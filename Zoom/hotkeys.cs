@@ -26,6 +26,13 @@ namespace WindowsFormsApplication1
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetKeyboardState(byte[] lpKeyState);
+
+        public Hotkeys()
+        {
+            settings.hotkeys = this;
+        }
 
         public void registerHotkeys(IntPtr Handle)
         {
@@ -51,8 +58,13 @@ namespace WindowsFormsApplication1
                 KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);       // The modifier of the hotkey that was pressed.
                 int id = m.WParam.ToInt32();                                        // The id of the hotkey that was pressed.
 
+                if (key == Keys.W)
+                {
+                    SetKeyboardState(new byte[256]);
+                    settings.formZoom.sendCommand();                        
+                }
 
-                MessageBox.Show("Hotkey has been pressed!");
+                //MessageBox.Show("Hotkey has been pressed!" + key);
                 // do something
             }
         }

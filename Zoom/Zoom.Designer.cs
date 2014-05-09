@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.defineHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSaveModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,20 +80,20 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // optionsToolStripMenuItem
             // 
@@ -129,13 +129,13 @@
             // modesToolStripMenuItem
             // 
             this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.modesToolStripMenuItem.Text = "Modes...";
             // 
             // variablesToolStripMenuItem
             // 
             this.variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.variablesToolStripMenuItem.Text = "Variables...";
             // 
             // jumpToolStripMenuItem
@@ -149,7 +149,7 @@
             // createJumpToolStripMenuItem
             // 
             this.createJumpToolStripMenuItem.Name = "createJumpToolStripMenuItem";
-            this.createJumpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createJumpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.createJumpToolStripMenuItem.Text = "Create Jump";
             // 
             // helpToolStripMenuItem
@@ -165,19 +165,19 @@
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.websiteToolStripMenuItem.Text = "Website";
             // 
             // gitHubToolStripMenuItem
             // 
             this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.gitHubToolStripMenuItem.Text = "Git Hub";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // textBox_task
@@ -204,6 +204,7 @@
             this.textBox_cmd.Name = "textBox_cmd";
             this.textBox_cmd.Size = new System.Drawing.Size(351, 63);
             this.textBox_cmd.TabIndex = 3;
+            this.textBox_cmd.TextChanged += new System.EventHandler(this.textBox_cmd_TextChanged);
             // 
             // label_cmd
             // 

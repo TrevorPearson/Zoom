@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="settings.cs" />
     <Compile Include="hotkeys.cs" />
     <Compile Include="Zoom.cs">
       <SubType>Form</SubType>

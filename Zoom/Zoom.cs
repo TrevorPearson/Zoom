@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace WindowsFormsApplication1
 {
+
     public partial class Zoom : Form
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -19,19 +20,15 @@ namespace WindowsFormsApplication1
 
         Hotkeys hotkeys = new Hotkeys();
  
-        enum KeyModifier
-        {
-            None = 0,
-            Alt = 1,
-            Control = 2,
-            Shift = 4,
-            WinKey = 8
-        }
  
         public Zoom()
         {
+            settings.formZoom = this;
             InitializeComponent();
 
+            //Open up "Open Dialog"
+
+            //process file
 
             hotkeys.registerHotkeys(this.Handle);
             
@@ -48,10 +45,21 @@ namespace WindowsFormsApplication1
             hotkeys.hotkeyPressedLogic(m);
             
         }
+
+        public void sendCommand()
+        {
+            SendKeys.SendWait(this.textBox_cmd.Text);   
+        }
+
  
         private void ExampleForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             UnregisterHotKey(this.Handle, 0);       // Unregister hotkey with id 0 before closing the form. You might want to call this more than once with different id values if you are planning to register more than one hotkey.
+        }
+
+        private void textBox_cmd_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
