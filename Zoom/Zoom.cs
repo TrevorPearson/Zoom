@@ -61,5 +61,32 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScriptManager sm = new ScriptManager(); //I could just reuse the old object if this is a problem.
+            sm.loadFile();            
+        }
+        public Zoom setCommandText(String newText)
+        {
+            textBox_cmd.Text = newText;
+            return this;
+        }
+        public Zoom setCommandType(String newText)
+        {
+            comboBox_cmd.Text = newText;
+            return this;
+        }
+        public Zoom setTaskText(String newText)
+        {
+            //textBox_task.Text = "hey\n" + String.Join(Environment.NewLine,newText);
+            textBox_task.Lines = newText.Split(Environment.NewLine.ToCharArray());
+            return this;
+        }
+        public Zoom setScriptTitle(String newText)
+        {
+            this.Text = newText;
+            return this;
+        }
     }
 }

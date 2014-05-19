@@ -9,6 +9,7 @@ namespace WindowsFormsApplication1
     {
         public static Zoom formZoom;
         public static Hotkeys hotkeys;
+        public static ScriptManager scriptManager;
 
     }
 }
