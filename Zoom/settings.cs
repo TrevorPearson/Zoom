@@ -11,5 +11,11 @@ namespace WindowsFormsApplication1
         public static Hotkeys hotkeys;
         public static ScriptManager scriptManager;
 
+        
+
+    }
+    public enum CommandType
+    {
+        String, Run, Copy, Delete, Mouse
     }
 }

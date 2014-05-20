@@ -46,10 +46,7 @@ namespace WindowsFormsApplication1
             
         }
 
-        public void sendCommand()
-        {
-            SendKeys.SendWait(this.textBox_cmd.Text);   
-        }
+        
 
  
         private void ExampleForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,14 +64,39 @@ namespace WindowsFormsApplication1
             ScriptManager sm = new ScriptManager(); //I could just reuse the old object if this is a problem.
             sm.loadFile();            
         }
-        public Zoom setCommandText(String newText)
+        public Zoom setCommandText(String newText, CommandType type)
         {
-            textBox_cmd.Text = newText;
+            Boolean error = false;
+            if (type == CommandType.Copy)
+            {
+                string[] lines = newText.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+                if (lines.Length != 2)
+                    error = true;
+
+                if (error)
+                {
+                    textBox_primary.Text = "error" + lines.Length;
+                    return this;
+                }
+
+                lines[0]= lines[0].Replace("from:", "");
+                lines[1] = lines[1].Replace("to:", "");
+
+                textBox_primary.Text = lines[0].Trim();
+                textBox_secondary.Text = lines[1].Trim();
+
+                return this;
+            }
+            textBox_primary.Text = newText;
             return this;
         }
-        public Zoom setCommandType(String newText)
+        public String getCommandText()
         {
-            comboBox_cmd.Text = newText;
+            return textBox_primary.Text;
+        }
+        public Zoom setCommandType(CommandType cmdType)
+        {
+            comboBox_cmd.Text = cmdType.ToString();
             return this;
         }
         public Zoom setTaskText(String newText)
@@ -87,6 +109,31 @@ namespace WindowsFormsApplication1
         {
             this.Text = newText;
             return this;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_cmd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO make this more object oriented
+            ComboBox comboBox = (ComboBox)sender;
+            CommandType pick = (CommandType)comboBox.SelectedIndex;
+            switch (pick)
+            {
+                case CommandType.Copy: //copy
+                    label_primary.Text = "From:";
+                    label_secondary.Visible = true;
+                    textBox_secondary.Visible = true;
+                    break;
+                default:
+                    label_primary.Text = "Command:";
+                    label_secondary.Visible = false;
+                    textBox_secondary.Visible = false;
+                    break;
+            }
         }
     }
 }

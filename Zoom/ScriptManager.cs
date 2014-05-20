@@ -62,22 +62,43 @@ namespace WindowsFormsApplication1
         private void initializeScript()
         {
             settings.formZoom.setScriptTitle(scriptTitle);
-            settings.formZoom.setCommandText(getCommandText()).setTaskText(getTaskPrompt()).setCommandType(getCommandType());
+            settings.formZoom.setCommandText(getCommandText(), getCommandType()).setTaskText(getTaskPrompt()).setCommandType(getCommandType());
         }
-
+        public void runTask()
+        {
+            SendKeys.SendWait(settings.formZoom.getCommandText());
+        }
+        public void loadTask()
+        {
+            settings.formZoom.setCommandText(getCommandText(), getCommandType()).setTaskText(getTaskPrompt()).setCommandType(getCommandType());
+        }
+        public void stepForward()
+        {
+            currentTask += 1;
+            if (currentTask >= tasks.Length)
+                currentTask = tasks.Length -1;
+            loadTask();
+        }
+        public void stepBackward()
+        {
+            currentTask -= 1;
+            if (currentTask < 0)
+                currentTask = 0;
+            loadTask();
+        }
         public String getCommandText()
         {
             return getCommandText(currentTask);
         }
         public String getCommandText(int taskNum)
         {
-            return tasks[taskNum].cmdText;
+            return tasks[taskNum].cmdText.Trim();
         }
-        public String getCommandType()
+        public CommandType getCommandType()
         {
             return getCommandType(currentTask);
         }
-        public String getCommandType(int taskNum)
+        public CommandType getCommandType(int taskNum)
         {
             return tasks[taskNum].cmdType;
         }
@@ -95,7 +116,7 @@ namespace WindowsFormsApplication1
         //Dictionary<string,string> cmdLines = new Dictionary<string, string>();
 
         public String promptText = null;
-        public String cmdType = null;
+        public CommandType cmdType;
         public String cmdText = null;
 
 
@@ -127,7 +148,8 @@ namespace WindowsFormsApplication1
                     if (mode == 1)
                     {
                         mode = 2;
-                        cmdType += line.Substring(0, line.Length-1);
+                        cmdType = (CommandType)Enum.Parse(typeof(CommandType), line.Substring(0, line.Length - 1),true); //Don't be all case sensitive
+                        //cmdType += line.Substring(0, line.Length-1);
                         continue;
                     }
                     if (mode == 2)

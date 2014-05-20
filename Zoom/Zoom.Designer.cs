@@ -48,9 +48,12 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_task = new System.Windows.Forms.TextBox();
             this.label_task = new System.Windows.Forms.Label();
-            this.textBox_cmd = new System.Windows.Forms.TextBox();
-            this.label_cmd = new System.Windows.Forms.Label();
+            this.textBox_primary = new System.Windows.Forms.TextBox();
+            this.label_primary = new System.Windows.Forms.Label();
             this.comboBox_cmd = new System.Windows.Forms.ComboBox();
+            this.label_secondary = new System.Windows.Forms.Label();
+            this.textBox_secondary = new System.Windows.Forms.TextBox();
+            this.comboBox_cmdOption = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,26 +85,26 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // optionsToolStripMenuItem
@@ -206,23 +209,22 @@
             this.label_task.TabIndex = 2;
             this.label_task.Text = "Guide:";
             // 
-            // textBox_cmd
+            // textBox_primary
             // 
-            this.textBox_cmd.Location = new System.Drawing.Point(87, 134);
-            this.textBox_cmd.Multiline = true;
-            this.textBox_cmd.Name = "textBox_cmd";
-            this.textBox_cmd.Size = new System.Drawing.Size(351, 63);
-            this.textBox_cmd.TabIndex = 3;
-            this.textBox_cmd.TextChanged += new System.EventHandler(this.textBox_cmd_TextChanged);
+            this.textBox_primary.Location = new System.Drawing.Point(87, 134);
+            this.textBox_primary.Name = "textBox_primary";
+            this.textBox_primary.Size = new System.Drawing.Size(351, 20);
+            this.textBox_primary.TabIndex = 3;
+            this.textBox_primary.TextChanged += new System.EventHandler(this.textBox_cmd_TextChanged);
             // 
-            // label_cmd
+            // label_primary
             // 
-            this.label_cmd.AutoSize = true;
-            this.label_cmd.Location = new System.Drawing.Point(84, 118);
-            this.label_cmd.Name = "label_cmd";
-            this.label_cmd.Size = new System.Drawing.Size(57, 13);
-            this.label_cmd.TabIndex = 4;
-            this.label_cmd.Text = "Command:";
+            this.label_primary.AutoSize = true;
+            this.label_primary.Location = new System.Drawing.Point(84, 118);
+            this.label_primary.Name = "label_primary";
+            this.label_primary.Size = new System.Drawing.Size(57, 13);
+            this.label_primary.TabIndex = 4;
+            this.label_primary.Text = "Command:";
             // 
             // comboBox_cmd
             // 
@@ -239,15 +241,47 @@
             this.comboBox_cmd.Name = "comboBox_cmd";
             this.comboBox_cmd.Size = new System.Drawing.Size(66, 21);
             this.comboBox_cmd.TabIndex = 5;
+            this.comboBox_cmd.SelectedIndexChanged += new System.EventHandler(this.comboBox_cmd_SelectedIndexChanged);
+            // 
+            // label_secondary
+            // 
+            this.label_secondary.AutoSize = true;
+            this.label_secondary.Location = new System.Drawing.Point(87, 157);
+            this.label_secondary.Name = "label_secondary";
+            this.label_secondary.Size = new System.Drawing.Size(23, 13);
+            this.label_secondary.TabIndex = 6;
+            this.label_secondary.Text = "To:";
+            this.label_secondary.Visible = false;
+            this.label_secondary.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textBox_secondary
+            // 
+            this.textBox_secondary.Location = new System.Drawing.Point(87, 174);
+            this.textBox_secondary.Name = "textBox_secondary";
+            this.textBox_secondary.Size = new System.Drawing.Size(351, 20);
+            this.textBox_secondary.TabIndex = 7;
+            this.textBox_secondary.Visible = false;
+            // 
+            // comboBox_cmdOption
+            // 
+            this.comboBox_cmdOption.FormattingEnabled = true;
+            this.comboBox_cmdOption.Location = new System.Drawing.Point(12, 174);
+            this.comboBox_cmdOption.Name = "comboBox_cmdOption";
+            this.comboBox_cmdOption.Size = new System.Drawing.Size(69, 21);
+            this.comboBox_cmdOption.TabIndex = 8;
+            this.comboBox_cmdOption.Visible = false;
             // 
             // Zoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 217);
+            this.Controls.Add(this.comboBox_cmdOption);
+            this.Controls.Add(this.textBox_secondary);
+            this.Controls.Add(this.label_secondary);
             this.Controls.Add(this.comboBox_cmd);
-            this.Controls.Add(this.label_cmd);
-            this.Controls.Add(this.textBox_cmd);
+            this.Controls.Add(this.label_primary);
+            this.Controls.Add(this.textBox_primary);
             this.Controls.Add(this.label_task);
             this.Controls.Add(this.textBox_task);
             this.Controls.Add(this.menuStrip1);
@@ -283,10 +317,13 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox_task;
         private System.Windows.Forms.Label label_task;
-        private System.Windows.Forms.TextBox textBox_cmd;
-        private System.Windows.Forms.Label label_cmd;
+        private System.Windows.Forms.TextBox textBox_primary;
+        private System.Windows.Forms.Label label_primary;
         private System.Windows.Forms.ComboBox comboBox_cmd;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.Label label_secondary;
+        private System.Windows.Forms.TextBox textBox_secondary;
+        private System.Windows.Forms.ComboBox comboBox_cmdOption;
     }
 }
 

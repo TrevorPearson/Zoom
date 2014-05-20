@@ -61,7 +61,18 @@ namespace WindowsFormsApplication1
                 if (key == Keys.W)
                 {
                     SetKeyboardState(new byte[256]);
-                    settings.formZoom.sendCommand();                        
+                    settings.scriptManager.runTask();
+                    settings.scriptManager.stepForward(); 
+                }
+                if (key == Keys.E)
+                {
+                    SetKeyboardState(new byte[256]);
+                    settings.scriptManager.stepForward();
+                }
+                if (key == Keys.Q)
+                {
+                    SetKeyboardState(new byte[256]);
+                    settings.scriptManager.stepBackward();
                 }
 
                 //MessageBox.Show("Hotkey has been pressed!" + key);
