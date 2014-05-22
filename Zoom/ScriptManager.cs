@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -66,7 +68,23 @@ namespace WindowsFormsApplication1
         }
         public void runTask()
         {
-            SendKeys.SendWait(settings.formZoom.getCommandText());
+            CommandType currentCmd = getCommandType();
+            switch (currentCmd)
+            {
+                case CommandType.Run: 
+                    Process.Start(settings.formZoom.getCommandText());
+                    break;
+                case CommandType.String:
+                    SendKeys.SendWait(settings.formZoom.getCommandText());
+                    break;
+                case CommandType.Copy:
+                    //TODO support wildcards
+                    File.Copy(settings.formZoom.getCommandText(),settings.formZoom.getCmd2Text(),true); //overwrite
+                    break;
+                default:
+                    break;
+            }
+            
         }
         public void loadTask()
         {
@@ -74,6 +92,8 @@ namespace WindowsFormsApplication1
         }
         public void stepForward()
         {
+            saveTaskData();
+
             currentTask += 1;
             if (currentTask >= tasks.Length)
                 currentTask = tasks.Length -1;
@@ -81,10 +101,17 @@ namespace WindowsFormsApplication1
         }
         public void stepBackward()
         {
+            saveTaskData();
             currentTask -= 1;
             if (currentTask < 0)
                 currentTask = 0;
             loadTask();
+        }
+        private void saveTaskData()
+        {
+            //we need to be smarter than this
+            setTaskPrompt(settings.formZoom.getTaskText());
+
         }
         public String getCommandText()
         {
@@ -109,6 +136,16 @@ namespace WindowsFormsApplication1
         public String getTaskPrompt(int taskNum)
         {
             return tasks[taskNum].promptText;
+        }
+        public ScriptManager setTaskPrompt(String newPrompt)
+        {
+            setTaskPrompt(newPrompt,currentTask);
+            return this;
+        }
+        public ScriptManager setTaskPrompt(String newPrompt, int taskNum)
+        {
+            tasks[taskNum].promptText = newPrompt;
+            return this;
         }
     }
     class ScriptTask

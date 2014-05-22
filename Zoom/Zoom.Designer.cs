@@ -252,7 +252,6 @@
             this.label_secondary.TabIndex = 6;
             this.label_secondary.Text = "To:";
             this.label_secondary.Visible = false;
-            this.label_secondary.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox_secondary
             // 

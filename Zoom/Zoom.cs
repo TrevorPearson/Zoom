@@ -94,6 +94,19 @@ namespace WindowsFormsApplication1
         {
             return textBox_primary.Text;
         }
+        public String getCmd2Text()
+        {
+            return textBox_secondary.Text;
+        }
+        public String getTaskText()
+        {
+            String output = "";
+            foreach (String line in textBox_task.Lines)
+            {
+                output = output + "\n" + line;
+            }
+            return output.Trim();
+        }
         public Zoom setCommandType(CommandType cmdType)
         {
             comboBox_cmd.Text = cmdType.ToString();
@@ -110,12 +123,6 @@ namespace WindowsFormsApplication1
             this.Text = newText;
             return this;
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox_cmd_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO make this more object oriented
