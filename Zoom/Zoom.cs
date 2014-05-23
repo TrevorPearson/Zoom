@@ -26,6 +26,8 @@ namespace WindowsFormsApplication1
             settings.formZoom = this;
             InitializeComponent();
 
+            ScriptManager sm = new ScriptManager(); //I could just reuse the old object if this is a problem.
+            settings.scriptManager.loadNewScript();
             //Open up "Open Dialog"
 
             //process file
@@ -59,11 +61,7 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ScriptManager sm = new ScriptManager(); //I could just reuse the old object if this is a problem.
-            sm.loadFile();            
-        }
+        
         public Zoom setCommandText(String newText, CommandType type)
         {
             Boolean error = false;
@@ -75,12 +73,13 @@ namespace WindowsFormsApplication1
 
                 if (error)
                 {
-                    textBox_primary.Text = "error" + lines.Length;
+                    textBox_primary.Text = "";
+                    textBox_secondary.Text = "";
                     return this;
                 }
 
-                lines[0]= lines[0].Replace("from:", "");
-                lines[1] = lines[1].Replace("to:", "");
+                //lines[0]= lines[0].Replace("from:", "");
+                //lines[1] = lines[1].Replace("to:", "");
 
                 textBox_primary.Text = lines[0].Trim();
                 textBox_secondary.Text = lines[1].Trim();
@@ -89,6 +88,22 @@ namespace WindowsFormsApplication1
             }
             textBox_primary.Text = newText;
             return this;
+        }
+        public CommandType getCommandType()
+        {
+            String cmdType = comboBox_cmd.Text;
+            return (CommandType)Enum.Parse(typeof(CommandType), cmdType, true); //Don't be all case sensitive            
+        }
+        public String getCommandTextAll()
+        {
+            String returnStr = "";
+            if (textBox_primary.Visible)
+                returnStr = textBox_primary.Text;
+            if (textBox_secondary.Visible)
+            {
+                returnStr = returnStr + Environment.NewLine + textBox_secondary.Text;
+            }
+            return returnStr;
         }
         public String getCommandText()
         {
@@ -141,6 +156,40 @@ namespace WindowsFormsApplication1
                     textBox_secondary.Visible = false;
                     break;
             }
+        }
+
+        public Boolean getSaveMode()
+        {
+            return autoSaveModeToolStripMenuItem.Checked;
+        }
+        private void autoSaveModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ScriptManager sm = new ScriptManager(); //I could just reuse the old object if this is a problem.
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            DialogResult openResult = fileDialog.ShowDialog();
+            String openPath = fileDialog.FileName;
+            if (openResult.ToString() != "OK")
+                return;
+            settings.scriptManager.loadFile(openPath);
+        }
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog filePath = new SaveFileDialog() ;
+
+            DialogResult saveDialog = filePath.ShowDialog();
+            String savePath = filePath.FileName;
+            if (saveDialog.ToString() != "OK")
+                return;
+            settings.scriptManager.saveAsScriptToFile(savePath);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.scriptManager.saveScriptToFile();
         }
     }
 }

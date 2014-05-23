@@ -54,6 +54,7 @@
             this.label_secondary = new System.Windows.Forms.Label();
             this.textBox_secondary = new System.Windows.Forms.TextBox();
             this.comboBox_cmdOption = new System.Windows.Forms.ComboBox();
+            this.updateTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,14 +93,16 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -128,12 +131,14 @@
             this.autoSaveModeToolStripMenuItem.Name = "autoSaveModeToolStripMenuItem";
             this.autoSaveModeToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.autoSaveModeToolStripMenuItem.Text = "Auto Save Mode";
+            this.autoSaveModeToolStripMenuItem.Click += new System.EventHandler(this.autoSaveModeToolStripMenuItem_Click);
             // 
             // scriptSettingsToolStripMenuItem
             // 
             this.scriptSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modesToolStripMenuItem,
-            this.variablesToolStripMenuItem});
+            this.variablesToolStripMenuItem,
+            this.updateTitleToolStripMenuItem});
             this.scriptSettingsToolStripMenuItem.Name = "scriptSettingsToolStripMenuItem";
             this.scriptSettingsToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.scriptSettingsToolStripMenuItem.Text = "Script Settings";
@@ -270,6 +275,12 @@
             this.comboBox_cmdOption.TabIndex = 8;
             this.comboBox_cmdOption.Visible = false;
             // 
+            // updateTitleToolStripMenuItem
+            // 
+            this.updateTitleToolStripMenuItem.Name = "updateTitleToolStripMenuItem";
+            this.updateTitleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateTitleToolStripMenuItem.Text = "Update Title...";
+            // 
             // Zoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,6 +334,7 @@
         private System.Windows.Forms.Label label_secondary;
         private System.Windows.Forms.TextBox textBox_secondary;
         private System.Windows.Forms.ComboBox comboBox_cmdOption;
+        private System.Windows.Forms.ToolStripMenuItem updateTitleToolStripMenuItem;
     }
 }
 
