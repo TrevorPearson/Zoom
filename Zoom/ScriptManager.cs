@@ -85,7 +85,12 @@ namespace WindowsFormsApplication1
         {
             saveAsScriptToFile(filePath);
         }
+        public ScriptManager insertNewTaskAt(int location)
+        {
 
+            
+            return this;
+        }
         public void saveAsScriptToFile(String saveFilePath)
         {
             Boolean invalidFile = false; //set to true

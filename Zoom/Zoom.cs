@@ -191,5 +191,10 @@ namespace WindowsFormsApplication1
         {
             settings.scriptManager.saveScriptToFile();
         }
+
+        private void button_insertBefore_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
