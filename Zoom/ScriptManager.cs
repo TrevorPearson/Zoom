@@ -159,13 +159,13 @@ namespace WindowsFormsApplication1
             setCmdText(settings.formZoom.getCommandTextAll());
 
         }
-        public String getLoadedCommandText()
+        public String[] getLoadedCommandText()
         {
             return getLoadedCommandText(currentTask);
         }
-        public String getLoadedCommandText(int taskNum)
+        public String[] getLoadedCommandText(int taskNum)
         {
-            return tasks[taskNum].cmdText.Trim();
+            return tasks[taskNum].cmdsText;
         }
         private CommandType getCurrentCommandType()
         {
@@ -208,6 +208,11 @@ namespace WindowsFormsApplication1
             tasks[taskNum].cmdType = newPrompt;
             return this;
         }
+        private ScriptManager setCmdText(String[] newPrompt)
+        {
+            tasks[currentTask].setCmd(newPrompt);
+            return this;
+        }
         private ScriptManager setCmdText(String newPrompt)
         {
             setCmdText(newPrompt, currentTask);
@@ -215,7 +220,7 @@ namespace WindowsFormsApplication1
         }
         private ScriptManager setCmdText(String newPrompt, int taskNum)
         {
-            tasks[taskNum].cmdText = newPrompt;
+            tasks[taskNum].setCmd(0, newPrompt);
             return this;
         }
     }
@@ -225,7 +230,8 @@ namespace WindowsFormsApplication1
 
         public String promptText = null;
         public CommandType cmdType;
-        public String cmdText = null;
+        //public String cmdText = null;
+        public String[] cmdsText = new String[1];
 
 
         //Regex regTask = new Regex("[^("+Environment.NewLine+Environment.NewLine+")]*");
@@ -243,6 +249,7 @@ namespace WindowsFormsApplication1
             String[] lines = bulkText.Split(Environment.NewLine.ToCharArray());
             {
                 int mode = 0;
+                int cmdCtr = 0;
                 foreach (String line in lines)
                 {
                     if (mode == 0 && line == "")
@@ -260,6 +267,9 @@ namespace WindowsFormsApplication1
                     {
                         mode = 2;
                         cmdType = (CommandType)Enum.Parse(typeof(CommandType), line.Substring(0, line.Length - 1),true); //Don't be all case sensitive
+
+                        if (cmdType == CommandType.Copy)
+                            cmdsText = new String[2];
                         //cmdType += line.Substring(0, line.Length-1);
                         continue;
                     }
@@ -268,10 +278,12 @@ namespace WindowsFormsApplication1
                         String temp = line.Substring(FileFormat.argumentPre.Length);
                         if (cmdType == CommandType.Copy)
                         {
+                            //temp = line.Substring(FileFormat.copyFrom.Length);
                             temp = temp.Replace(FileFormat.copyFrom, "");
                             temp = temp.Replace(FileFormat.copyTo, "");
                         }
-                        cmdText += temp + "\n";
+                        cmdsText[cmdCtr] = temp;
+                        cmdCtr++;
                     }
                 }
             }
@@ -281,14 +293,35 @@ namespace WindowsFormsApplication1
             //cmdText = regTask.Match(bulkText).Value.Trim(); //bulkText;
 
         }
+        public String getCmd(int number)
+        {
+            return cmdsText[number];
+        }
+        public ScriptTask setCmd(String[] newString)
+        {
+            cmdsText = newString;
+            return this;
+        }
+        public ScriptTask setCmd(int number, String newString)
+        {
+            cmdsText[number] = newString;
+            return this;
+        }
         private String getCmdSaveString()
         {
-            String[] lines = cmdText.Trim().Split(Environment.NewLine.ToCharArray());
-                           
+            String[] lines = new String[1];// cmdText.Trim().Split(Environment.NewLine.ToCharArray());
+
             if (cmdType == CommandType.Copy)
             {
-                lines[0] = FileFormat.copyFrom + lines[0];
-                lines[1] = FileFormat.copyTo + lines[1];
+                lines = new String[2];
+                lines[0] = FileFormat.copyFrom + cmdsText[0];
+                lines[1] = FileFormat.copyTo + cmdsText[1];
+                //lines[0] = FileFormat.copyFrom + lines[0];
+                //lines[1] = FileFormat.copyTo + lines[1];
+            }
+            else
+            {
+                lines[0] = cmdsText[0];
             }
 
             for (int ctr = 0; ctr < lines.Count(); ctr++)

@@ -62,12 +62,12 @@ namespace WindowsFormsApplication1
         }
 
         
-        public Zoom setCommandText(String newText, CommandType type)
+        public Zoom setCommandText(String[] newText, CommandType type)
         {
             Boolean error = false;
             if (type == CommandType.Copy)
             {
-                string[] lines = newText.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+                string[] lines = newText;
                 if (lines.Length != 2)
                     error = true;
 
@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1
 
                 return this;
             }
-            textBox_primary.Text = newText;
+            textBox_primary.Text = newText[0];
             return this;
         }
         public CommandType getCommandType()
@@ -94,14 +94,14 @@ namespace WindowsFormsApplication1
             String cmdType = comboBox_cmd.Text;
             return (CommandType)Enum.Parse(typeof(CommandType), cmdType, true); //Don't be all case sensitive            
         }
-        public String getCommandTextAll()
+        public String[] getCommandTextAll()
         {
-            String returnStr = "";
+            String[] returnStr = new String[2];
             if (textBox_primary.Visible)
-                returnStr = textBox_primary.Text;
+                returnStr[0] = textBox_primary.Text;
             if (textBox_secondary.Visible)
             {
-                returnStr = returnStr + Environment.NewLine + textBox_secondary.Text;
+                returnStr[1] = textBox_secondary.Text;
             }
             return returnStr;
         }
