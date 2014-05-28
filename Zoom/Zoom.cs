@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
 namespace WindowsFormsApplication1
 {
 
@@ -190,6 +189,12 @@ namespace WindowsFormsApplication1
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settings.scriptManager.saveScriptToFile();
+        }
+
+        private void updateTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
         }
     }
 }
