@@ -191,9 +191,14 @@ namespace WindowsFormsApplication1
             settings.scriptManager.saveScriptToFile();
         }
 
+<<<<<<< HEAD
         private void updateTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+=======
+        private void button_insertBefore_Click(object sender, EventArgs e)
+        {
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
 
         }
     }

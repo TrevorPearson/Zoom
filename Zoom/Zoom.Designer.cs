@@ -55,6 +55,10 @@
             this.label_secondary = new System.Windows.Forms.Label();
             this.textBox_secondary = new System.Windows.Forms.TextBox();
             this.comboBox_cmdOption = new System.Windows.Forms.ComboBox();
+<<<<<<< HEAD
+=======
+            this.button_insertBefore = new System.Windows.Forms.Button();
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,21 +150,34 @@
             // modesToolStripMenuItem
             // 
             this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
+<<<<<<< HEAD
             this.modesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+=======
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
             this.modesToolStripMenuItem.Text = "Modes...";
             // 
             // variablesToolStripMenuItem
             // 
             this.variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
+<<<<<<< HEAD
             this.variablesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+=======
+            this.variablesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
             this.variablesToolStripMenuItem.Text = "Variables...";
             // 
             // updateTitleToolStripMenuItem
             // 
             this.updateTitleToolStripMenuItem.Name = "updateTitleToolStripMenuItem";
+<<<<<<< HEAD
             this.updateTitleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.updateTitleToolStripMenuItem.Text = "Update Title...";
             this.updateTitleToolStripMenuItem.Click += new System.EventHandler(this.updateTitleToolStripMenuItem_Click);
+=======
+            this.updateTitleToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.updateTitleToolStripMenuItem.Text = "Update Title...";
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
             // 
             // jumpToolStripMenuItem
             // 
@@ -282,11 +299,25 @@
             this.comboBox_cmdOption.TabIndex = 8;
             this.comboBox_cmdOption.Visible = false;
             // 
+<<<<<<< HEAD
+=======
+            // button_insertBefore
+            // 
+            this.button_insertBefore.Location = new System.Drawing.Point(270, 108);
+            this.button_insertBefore.Name = "button_insertBefore";
+            this.button_insertBefore.Size = new System.Drawing.Size(75, 23);
+            this.button_insertBefore.TabIndex = 9;
+            this.button_insertBefore.Text = "Insert Before";
+            this.button_insertBefore.UseVisualStyleBackColor = true;
+            this.button_insertBefore.Click += new System.EventHandler(this.button_insertBefore_Click);
+            // 
+>>>>>>> b48dcecb352e6169dd5bb634243c838f14f5a661
             // Zoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 217);
+            this.Controls.Add(this.button_insertBefore);
             this.Controls.Add(this.comboBox_cmdOption);
             this.Controls.Add(this.textBox_secondary);
             this.Controls.Add(this.label_secondary);
@@ -336,6 +367,7 @@
         private System.Windows.Forms.TextBox textBox_secondary;
         private System.Windows.Forms.ComboBox comboBox_cmdOption;
         private System.Windows.Forms.ToolStripMenuItem updateTitleToolStripMenuItem;
+        private System.Windows.Forms.Button button_insertBefore;
     }
 }
 
