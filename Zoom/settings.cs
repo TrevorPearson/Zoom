@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
@@ -31,5 +32,30 @@ namespace WindowsFormsApplication1
     public enum CommandType
     {
         String, Run, Copy, Delete, Mouse
+    }
+
+    //int promptValue = Prompt.ShowDialog("Test", "123");
+    public static class Prompt
+    {
+        public static String ShowDialog(string text, string caption, string defaultText)
+        {
+            Form prompt = new Form();
+//            prompt.KeyPreview = true;
+            prompt.Width = 220;
+            prompt.Height = 150;
+            prompt.Text = caption;
+            Label textLabel = new Label() { Left = 10, Top = 10, Text = text };
+            TextBox inputBox = new TextBox() { Left = 10, Top = 40, Width = 200 };
+            inputBox.Text = defaultText;
+            //NumericUpDown inputBox = new NumericUpDown() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 50, Top = 70 };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(inputBox);
+            prompt.ShowDialog();
+            prompt.AcceptButton = confirmation;
+            return inputBox.Text;
+        }
     }
 }

@@ -35,6 +35,12 @@ namespace WindowsFormsApplication1
 
             initializeScript();
         }
+        public ScriptManager setScriptTitle(String newTitle)
+        {
+            scriptTitle = newTitle;
+            settings.formZoom.setScriptTitle(scriptTitle);
+            return this;
+        }
         public void loadFile(String inputPath)
         {
             Boolean invalidFile = false; //set to true
@@ -227,6 +233,11 @@ namespace WindowsFormsApplication1
         {
             tasks[taskNum].setCmd(0, newPrompt);
             return this;
+        }
+
+        internal string getScriptTitle()
+        {
+            return scriptTitle;
         }
     }
     class ScriptTask
