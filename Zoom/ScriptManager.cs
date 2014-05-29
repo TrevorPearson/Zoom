@@ -11,7 +11,9 @@ namespace WindowsFormsApplication1
 {
     class ScriptManager
     {
-        ScriptTask[] tasks = null;
+        //List<string> words = new string[] { "Hello", "world" }.ToList();
+        List<ScriptTask> tasks = null;
+        //ScriptTask[] tasks = null;
         int currentTask = 0;
         String scriptTitle = "Unloaded";
         String filePath = null;
@@ -30,8 +32,9 @@ namespace WindowsFormsApplication1
         {
             scriptTitle = "New";
 
-            tasks = new ScriptTask[1];
-            tasks[0] = new ScriptTask(FileFormat.newFileFormat);
+            tasks = new List<ScriptTask>();
+            tasks.Add(new ScriptTask(FileFormat.newFileFormat));
+            //tasks[0] = new ScriptTask(FileFormat.newFileFormat);
 
             initializeScript();
         }
@@ -57,15 +60,19 @@ namespace WindowsFormsApplication1
             //TODO
 
             //Load in tasks
-            {              
-                tasks = new ScriptTask[regTask.Matches(fileText).Count];
+            {
+                tasks = new List<ScriptTask>();
+                
+                //tasks = new ScriptTask[regTask.Matches(fileText).Count];
                 int taskCtr = 0;
                 
                 foreach (Match match in regTask.Matches(fileText))
                 {
                     //String thisMatch = match.ToString().Substring(5);
                     String thisMatch = match.ToString().Substring(5).Trim();  //TODO fix hard coded 5
-                    tasks[taskCtr] = new ScriptTask(thisMatch);
+
+                    tasks.Add(new ScriptTask(thisMatch));
+                    //tasks[taskCtr] = new ScriptTask(thisMatch);
                     taskCtr += 1;
                 }
             }
@@ -85,16 +92,22 @@ namespace WindowsFormsApplication1
         private void initializeScript()
         {
             settings.formZoom.setScriptTitle(scriptTitle);
-            settings.formZoom.setCommandText(getLoadedCommandText(), getLoadedCommandType()).setTaskText(getLoadedTaskPrompt()).setCommandType(getLoadedCommandType());
+            loadTask();
         }
         public void saveScriptToFile()
         {
             saveAsScriptToFile(filePath);
         }
-        public ScriptManager insertNewTaskAt(int location)
+        public ScriptManager insertNewTaskBefore()
+        {
+            insertNewTaskAt(currentTask);
+            loadTask();
+            return this;
+        }
+        private ScriptManager insertNewTaskAt(int location)
         {
 
-            
+            tasks.Insert(location, new ScriptTask());
             return this;
         }
         public void saveAsScriptToFile(String saveFilePath)
@@ -150,8 +163,8 @@ namespace WindowsFormsApplication1
                 saveTaskData();
 
             currentTask += 1;
-            if (currentTask >= tasks.Length)
-                currentTask = tasks.Length -1;
+            if (currentTask >= tasks.Count)
+                currentTask = tasks.Count - 1;
             loadTask();
         }
         public void stepBackward()
@@ -258,6 +271,12 @@ namespace WindowsFormsApplication1
  //       private static Regex _newlinesMultiple = new Regex(@"\n{2,}", RegexOptions.Compiled);
   //      private static Regex _leadingWhitespace = new Regex(@"^[ ]*", RegexOptions.Compiled);
 
+        public ScriptTask()
+        {
+            promptText = "";
+            cmdType = CommandType.String;
+            cmdsText[0] = "";
+        }
         public ScriptTask(String bulkText)
         {
             Clipboard.SetText(bulkText);

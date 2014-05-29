@@ -40,15 +40,14 @@ namespace WindowsFormsApplication1
         public static String ShowDialog(string text, string caption, string defaultText)
         {
             Form prompt = new Form();
-//            prompt.KeyPreview = true;
             prompt.Width = 220;
-            prompt.Height = 150;
+            prompt.Height = 130;
             prompt.Text = caption;
-            Label textLabel = new Label() { Left = 10, Top = 10, Text = text };
-            TextBox inputBox = new TextBox() { Left = 10, Top = 40, Width = 200 };
+            Label textLabel = new Label() { Left = 0, Top = 10, Text = text };
+            TextBox inputBox = new TextBox() { Left = 10, Top = 35, Width = 190 };
             inputBox.Text = defaultText;
             //NumericUpDown inputBox = new NumericUpDown() { Left = 50, Top = 50, Width = 400 };
-            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 50, Top = 70 };
+            Button confirmation = new Button() { Text = "Ok", Left = 0, Top = 70, Width = 200 };
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(confirmation);
             prompt.Controls.Add(textLabel);
